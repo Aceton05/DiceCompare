@@ -8,31 +8,32 @@ namespace DiceCompare
     {
         static void Main(string[] args)
         {
-            List<Player> players = SetPlayers(args);
-            List<MatchUps> matchups = CreateMatchups(players);
-            List<GameResults> gameresults = PlayGames(matchups);
+            var players = SetPlayers(args);
+            var matchups = CreateMatchups(players);
+            var gameresults = PlayGames(matchups);
+            var rnd = new Random();
             RankPlayers(gameresults);
             
         }
 
-        private static void RankPlayers(List<GameResults> gameresults)
+        private static void RankPlayers(List<GameResult> gameresults)
         {
             throw new NotImplementedException();
         }
 
-        private static List<GameResults> PlayGames(List<MatchUps> matchups)
+        private static List<GameResult> PlayGames(List<MatchUp> matchups)
         {
             throw new NotImplementedException();
         }
 
-        private static List<MatchUps> CreateMatchups(List<Player> players)
+        private static List<MatchUp> CreateMatchups(List<Player> players)
         {
             throw new NotImplementedException();
         }
 
         private static List<Player> SetPlayers(string[] args)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();            
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace DiceCompare
 {
-    internal class MatchUps
+    internal class GameResult
     {
     }
 }
