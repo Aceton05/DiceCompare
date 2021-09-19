@@ -3,6 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8x]{inputenc}
 \usepackage[a4paper,margin=2.5cm,footskip=0.5cm]{geometry}
+\usepackage{wrapfig}
 
 % Die nächsten vier Felder bitte anpassen:
 \newcommand{\Aufgabe}{Aufgabe 4: Würfelglück } % Aufgabennummer und Aufgabennamen angeben
@@ -27,6 +28,7 @@
 
 % Für Bilder
 \usepackage{graphicx}
+\graphicspath{ {./images/} }
 
 % Für Algorithmen
 \usepackage{algpseudocode}
@@ -53,23 +55,32 @@ tabsize=2,
 extendedchars=true,
 breaklines=true,
 frame=tb,
-stringstyle=\color{red}\ttfamily,
 showspaces=false,
 showtabs=false,
 xleftmargin=17pt,
 framexleftmargin=17pt,
 framexrightmargin=5pt,
 framexbottommargin=4pt,
-commentstyle=\color{green},
-morecomment=[l]{//}, %use comment-line-style!
-morecomment=[s]{/*}{*/}, %for multiline comments
 showstringspaces=false,
-morekeywords={  List },
+% confing for comments
+commentstyle=\color{green},
+morecomment=[l]{//}, 
+morecomment=[s]{/*}{*/}, 
+% keywords for classes
+morekeywords={  List, Program,GameResult,MatchUp,Player,Random },
 keywordstyle=\color{cyan},
 identifierstyle=\color{cloudwhite},
-backgroundcolor=\color{white},
-emph={int,char,double,float,unsigned,void,bool},
+% keywords for types
+emph={int,char,double,float,unsigned,void,bool,var,string,private,static,new,class,using},
 emphstyle={\color{blue}},
+% other keywords to highlight
+classoffset=1, 
+otherkeywords={throw},
+morekeywords={throw},
+keywordstyle=\color{mymauve},
+classoffset=0,
+% style for strings
+stringstyle=\color{red}\ttfamily,
 }
 
 
@@ -85,8 +96,8 @@ emphstyle={\color{blue}},
 	    \LARGE \Namen\\\\}
 \date{\LARGE\today}
 
-\begin{document}
 
+\begin{document}
 
 
 \maketitle
@@ -102,11 +113,15 @@ emphstyle={\color{blue}},
 %Die Texte, die hier bereits stehen, geben ein paar Hinweise zur
 %Einsendung. Du solltest sie aber in deiner Einsendung wieder entfernen!
 
+
 \section{Lösungsidee}
 %Die Idee der Lösung sollte hieraus vollkommen ersichtlich werden, ohne dass auf die eigentliche Implementierung Bezug genommen wird.
-Für diese Aufgabe muss man wissen, dass Digitalbilder aus vielen Bildpunkten (Pixeln) bestehen, die jeweils eine bestimmte Farbe haben. Wenn man ein Digitalbild 
-ausreichend vergrößert betrachtet, kann man die einzelnen Pixel erkennen. Hier ist ein vergrößerter Ausschnitt aus einem der Beispielbilder für diese Aufgabe (Kontrast ein 
-wenig erhöht): Bei genauem Hinsehen fällt auf, dass im oberen Bereich des Ausschnittes jedes Pixel eine leicht andere Farbe hat, während unten immer vier Pixel die gleiche Farbe haben. 
+Für diese Aufgabe muss man wissen, dass Digitalbilder aus vielen Bildpunkten (Pixeln) bestehen, die jeweils eine bestimmte Farbe haben. Wenn man ein Digitalbild ausreichend vergrößert betrachtet, kann man die einzelnen Pixel erkennen. Hier ist ein vergrößerter Ausschnitt aus einem der Beispielbilder für diese Aufgabe (Kontrast ein wenig erhöht): \\
+\begin{wrapfigure}{l}{0.5\textwidth} 
+\includegraphics[width=0.5\textwidth]{mensch-aergere-dich-nicht-spielfeld}
+\centering
+\caption{Spielbrett}
+\end{wrapfigure}Bei genauem Hinsehen fällt auf, dass im oberen Bereich des Ausschnittes jedes Pixel eine leicht andere Farbe hat, während unten immer vier Pixel die gleiche Farbe haben. 
 Dies sind die Rhinozelfantenschuppen. 
 \section{Umsetzung}
 %Hier wird kurz erläutert, wie die Lösungsidee im Programm tatsächlich umgesetzt wurde. Hier können auch Implementierungsdetails erwähnt werden.
