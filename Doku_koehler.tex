@@ -4,6 +4,8 @@
 \usepackage[utf8x]{inputenc}
 \usepackage[a4paper,margin=2.5cm,footskip=0.5cm]{geometry}
 \usepackage{wrapfig}
+%\usepackage[english]{babel} 
+
 
 % Die nächsten vier Felder bitte anpassen:
 \newcommand{\Aufgabe}{Aufgabe 4: Würfelglück } % Aufgabennummer und Aufgabennamen angeben
@@ -31,7 +33,7 @@
 \graphicspath{ {./images/} }
 
 % Für Algorithmen
-\usepackage{algpseudocode}
+%\usepackage{algpseudocode}
 
 % Für Quelltext
 
@@ -75,8 +77,8 @@ emph={int,char,double,float,unsigned,void,bool,var,string,private,static,new,cla
 emphstyle={\color{blue}},
 % other keywords to highlight
 classoffset=1, 
-otherkeywords={throw},
-morekeywords={throw},
+otherkeywords={throw,return,break},
+morekeywords={throw,return,break},
 keywordstyle=\color{mymauve},
 classoffset=0,
 % style for strings
@@ -105,24 +107,37 @@ stringstyle=\color{red}\ttfamily,
 
 \vspace{0.5cm}
 
-%\textbf{Anleitung:} Trage oben in den Zeilen 8 bis 11 die Aufgabennummer, die Team-ID, den Team-Namen und alle Bearbeiter/-innen dieser Aufgabe mit Vor- und Nachnamen ein.
-%Vergiss nicht, auch den Aufgabennamen anzupassen (statt "`\LaTeX-Dokument"')!
-
-%Dann kannst du dieses Dokument mit deiner \LaTeX-Umgebung übersetzen.
-
-%Die Texte, die hier bereits stehen, geben ein paar Hinweise zur
-%Einsendung. Du solltest sie aber in deiner Einsendung wieder entfernen!
-
 
 \section{Lösungsidee}
-%Die Idee der Lösung sollte hieraus vollkommen ersichtlich werden, ohne dass auf die eigentliche Implementierung Bezug genommen wird.
-Für diese Aufgabe muss man wissen, dass Digitalbilder aus vielen Bildpunkten (Pixeln) bestehen, die jeweils eine bestimmte Farbe haben. Wenn man ein Digitalbild ausreichend vergrößert betrachtet, kann man die einzelnen Pixel erkennen. Hier ist ein vergrößerter Ausschnitt aus einem der Beispielbilder für diese Aufgabe (Kontrast ein wenig erhöht): \\
-\begin{wrapfigure}{l}{0.5\textwidth} 
-\includegraphics[width=0.5\textwidth]{mensch-aergere-dich-nicht-spielfeld}
-\centering
-\caption{Spielbrett}
-\end{wrapfigure}Bei genauem Hinsehen fällt auf, dass im oberen Bereich des Ausschnittes jedes Pixel eine leicht andere Farbe hat, während unten immer vier Pixel die gleiche Farbe haben. 
-Dies sind die Rhinozelfantenschuppen. 
+
+%Für diese Aufgabe muss man wissen, dass Digitalbilder aus vielen Bildpunkten (Pixeln) bestehen, die jeweils %eine bestimmte Farbe haben. Wenn man ein Digitalbild ausreichend vergrößert betrachtet, kann man die %einzelnen Pixel erkennen. Hier ist ein vergrößerter Ausschnitt aus einem der Beispielbilder für diese %Aufgabe (Kontrast ein wenig erhöht):
+%Bei genauem Hinsehen fällt auf, dass im oberen Bereich des Ausschnittes jedes Pixel eine leicht andere Farbe %hat, während unten immer vier Pixel die gleiche Farbe haben. Dies sind die Rhinozelfantenschuppen. 
+Da die Beispielaufgaben unterschiedliche Spieler anzahlen enthalten, muss die Aufgabenstellung in drei Teillaufgen unterteilt werden:
+\begin{enumerate}
+	\item Bestimmung der Spieler mit verwendeten Würfeln aus der gegebenen .txt Datei. So wie das Erstellen von Paarung.
+	\item \glqq Spielen\grqq von Partien in Ausreichender Menge um den besseren Würfel in der Paarung zu bestimmen.
+	\item Vergleich von den Ergebnissen der einzelnen Partien um den besten Würfel von allen gegeben Würfeln zu Bestimmen.
+\end{enumerate}
+Die Eigentliche Logik der Aufgabe befindet sich im zweiten Punkt. Hier müssen die Gegeben Regeln des Mensch ärgere dich nicht Spiels berücksichtigt werden. Die hierbei wichtigsten Regeln sind:
+\begin{wrapfigure}{r}{0.3\textwidth} 
+	\includegraphics[width=0.31\textwidth]{mensch-aergere-dich-nicht-spielfeld}
+	\centering
+	\caption{Spielbrett}
+\end{wrapfigure}
+\begin{enumerate}
+	
+	\item [$\bullet$] Bei einer gewürfelten Sechs darf erneut gewürfelt werden.
+	\item [$\bullet$]Bei einer Sechs wird falls möglich eine eigene Figur auf das Feld A der eigenen Farbe gestellt.
+	\item [$\bullet$] Eine Gegnerische Figur die das Zielfeld besetzt wird beim betreten geschlagen (zurück auf eines der B Felder).
+	\item [$\bullet$] Die vorderste Figur wird immer als erstes versucht zu bewegen (Abweichung von den Offiziellen Regel)
+	\item [$\bullet$] Die Zielfelder [a, b, c, d] müssen genau erreicht werden. Es dürfen keine \glqq Augenzahlen \grqq verfallen
+	\item [$\bullet$] Kann die vorderste Figur nicht bewegt werden, wird so lange die nächste weiteste Figur versucht zu bewegen.
+	\item [$\bullet$] Kann keine der Figuren auf der \glqq Laufbahn \grqq bewegt werden, verfällt der Zug.
+	\item [$\bullet$] Felder auf denen eine eigene Figur steht können nicht betreten werden. Auf den Zielfeldern dürfen eigene Figuren nicht übersprungen werden.
+	\item [$\bullet$] Die Spieler führen ihre Züge immer im wechsel aus.
+\end{enumerate}
+
+
 \section{Umsetzung}
 %Hier wird kurz erläutert, wie die Lösungsidee im Programm tatsächlich umgesetzt wurde. Hier können auch Implementierungsdetails erwähnt werden.
 Die Lösungsidee wird in Python implementiert. Die Python Imaging Library (PIL) stellt viele Funktionen zur Bildverar- beitung zur Verfügung. Damit funktionieren das Öffnen und 
