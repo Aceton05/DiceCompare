@@ -35,7 +35,7 @@ namespace DiceCompare
             var nowinnerfound = true;
             while (nowinnerfound)
             {
-                matchResult.MatchUp.PlayGame();
+                matchResult.MatchUp.PlayAnOtherGame();
                 nowinnerfound = TryFindWinner(matchResult);
             }
             return matchResult;
@@ -71,7 +71,7 @@ namespace DiceCompare
         private static List<Player> SetPlayers(string[] args)
         {
             string filePath = "";
-            if (args == null)
+            if (args.Length == 0)
             {
                 Console.WriteLine("No File given. Please enter filepath");
                 filePath = Console.ReadLine();
@@ -85,7 +85,7 @@ namespace DiceCompare
                 fileText = File.ReadAllText(filePath);
                 try
                 {
-                    var lines = fileText.Split('\n');
+                    var lines = fileText.Split("\r\n");
                     var players = new List<Player>();
                     for (int i=1;i<int.Parse(lines[0]);i++)
                         players.Add(new Player(lines[i]));
