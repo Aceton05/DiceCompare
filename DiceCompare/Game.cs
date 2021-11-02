@@ -2,7 +2,7 @@
 
 namespace DiceCompare
 {
-    internal class Game
+    public class Game
     {
         private Player player;
         private Player oponent;
@@ -14,10 +14,14 @@ namespace DiceCompare
             this.oponent = oponent;
         }
 
-        internal void Play()
+        public Player Winner { get => winner; set => winner = value; }
+
+        public void Play()
         {
-            winner = player;
-            Console.WriteLine($"winner: {winner.Name}");
+            if (player.Dice.Role() > oponent.Dice.Role())
+                winner = player;
+            else
+                winner = oponent;
         }
     }
 }

@@ -1,17 +1,17 @@
-﻿namespace DiceCompare
+﻿using System.Linq;
+
+namespace DiceCompare
 {
-    internal class Player
+    public class Player
     {
         public Player(string line)
         {
             var splits = line.Split();
-            Dice = new int[int.Parse(splits[0])];
-            for (int i = 1; i < splits.Length; i++)
-                Dice[i - 1] = int.Parse(splits[i]);
-            Name = $"W{Dice.Length} [{string.Join(",",Dice)}]";
+            Dice = new Dice(splits[0], splits.Skip(1).ToArray());
+            Name = $"\"W{Dice.SideCount} [{string.Join(",", Dice.Sides)}]\"l";
         }
 
-        public int[] Dice { get; private set; }
+        public Dice Dice { get; private set; }
         public string Name { get; private set; }
     }
 }

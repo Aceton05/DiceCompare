@@ -1,70 +1,68 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace DiceCompare
 {
     class Program
     {
+        public static List<Player> Players { get; private set; }
+        public static List<MatchUp> Matchups { get; private set; }
+
         static void Main(string[] args)
         {
-            var players = SetPlayers(args);
-            var matchups = CreateMatchups(players);
-            var matchResults = PlayMatchups(matchups);
-            var rnd = new Random();
-            RankPlayers(matchResults);
+             Players = SetPlayers(args);
+             Matchups = CreateMatchups(Players);
+            Matchups = PlayMatchups(Matchups);
+            
+            RankPlayers(Matchups);
 
         }
 
-        private static void RankPlayers(List<MatchResult> matchResults)
+        private static void RankPlayers(List<MatchUp> matches)
         {
-            throw new NotImplementedException();
+            foreach(var match in matches)
+            {
+                Console.WriteLine($"Match: {match.Player.Name} vs. {match.Oponent.Name} \n Winner:{match.Winner.Name}\n");
+            }
+            var victoris = new Dictionary<string, int>();
+            foreach (var player in Players)
+            {
+                victoris.Add(player.Name, matches.Where(x=>x.Winner.Name==player.Name).Count());
+                Console.WriteLine($"Player {player.Name} won {matches.Where(x => x.Winner.Name == player.Name).Count()} times");
+            }
+            Console.ReadLine();
         }
 
-        private static List<MatchResult> PlayMatchups(List<MatchUp> matchups)
+        private static List<MatchUp> PlayMatchups(List<MatchUp> matchups)
         {
-            var results = new List<MatchResult>();
+            var results = new List<MatchUp>();
             foreach (var match in matchups)
                 results.Add(PlayGames(match));
             return results;
         }
 
-        private static MatchResult PlayGames(MatchUp match)
+        private static MatchUp PlayGames(MatchUp match)
         {
-            var matchResult = new MatchResult(match);
-            var nowinnerfound = true;
-            while (nowinnerfound)
+           
+            var winnerfound = false;
+            while (!winnerfound)
             {
-                matchResult.MatchUp.PlayAnOtherGame();
-                nowinnerfound = TryFindWinner(matchResult);
+                match.PlayAnOtherGame();
+                winnerfound = match.TryFindWinner(match);
             }
-            return matchResult;
+            return match;
         }
 
-        private static bool TryFindWinner(MatchResult matchResult)
-        {
-            throw new NotImplementedException("Logic still missing");
-            switch (matchResult.MatchUp.Games.Count)
-            {
-                case int n when (n < 10):
-                    return false;
-                case int n when (n < 40):
-                    return false;
-                default:
-                    return false;
-            }
-
-        }
-
-        
-
+       
         private static List<MatchUp> CreateMatchups(List<Player> players)
         {
             var matchups = new List<MatchUp>();
-            foreach(var player in players)            
-                foreach(var oponent in players)                
+            foreach (var player in players)
+                foreach (var oponent in players)
                     if (player != oponent)
-                        matchups.Add(new MatchUp(player,oponent));
+                        matchups.Add(new MatchUp(player, oponent));
             return matchups;
         }
 
@@ -87,7 +85,7 @@ namespace DiceCompare
                 {
                     var lines = fileText.Split("\r\n");
                     var players = new List<Player>();
-                    for (int i=1;i<int.Parse(lines[0]);i++)
+                    for (int i = 1; i < int.Parse(lines[0]); i++)
                         players.Add(new Player(lines[i]));
                     return players;
                 }
