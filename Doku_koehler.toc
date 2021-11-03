@@ -2,13 +2,13 @@
 \contentsline {section}{\numberline {1}L\IeC {\"o}sungsidee}{1}{}%
 \contentsline {section}{\numberline {2}Umsetzung}{2}{}%
 \contentsline {subsection}{\numberline {2.1}Erstellung der Spiele /\glqq Matche\grqq }{2}{}%
-\contentsline {subsection}{\numberline {2.2}Ausf\IeC {\"u}hrung der \glqq Matche\grqq }{3}{}%
+\contentsline {subsection}{\numberline {2.2}Ausf\IeC {\"u}hrung der \glqq Matche\grqq }{2}{}%
 \contentsline {subsection}{\numberline {2.3}Spielen der \glqq Spiele\grqq }{3}{}%
 \contentsline {subsection}{\numberline {2.4}Durchf\IeC {\"u}hren eines Zugs}{3}{}%
 \contentsline {section}{\numberline {3}Beispiele}{3}{}%
 \contentsline {subsection}{\numberline {3.1}wuerfel0.txt}{3}{}%
-\contentsline {subsection}{\numberline {3.2}wuerfel1.txt}{4}{}%
+\contentsline {subsection}{\numberline {3.2}wuerfel1.txt}{3}{}%
 \contentsline {subsection}{\numberline {3.3}wuerfel2.txt}{4}{}%
 \contentsline {subsection}{\numberline {3.4}wuerfel3.txt}{4}{}%
-\contentsline {section}{\numberline {4}Quellcode}{5}{}%
+\contentsline {section}{\numberline {4}Quellcode}{4}{}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

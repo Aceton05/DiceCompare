@@ -113,9 +113,10 @@ stringstyle=\color{red}\ttfamily,
 
 
 \section{Lösungsidee}
+
  \begin{wrapfigure}{r}{0.3\textwidth} 
- 	\includegraphics[width=0.11\textwidth]{home}	
  	\centering
+ 	\includegraphics[width=0.11\textwidth]{home}	 	
  	\caption{B-Felder}
  	\label{fig:B-Felder}
  \end{wrapfigure}
@@ -123,22 +124,22 @@ Da die Beispielaufgaben unterschiedliche Spieler anzahlen enthalten, muss die Au
 Teillaufgen unterteilt werden:
 
 \begin{enumerate}
-	\item Bestimmung der Spieler mit verwendeten Würfeln aus der gegebenen .txt Datei. So wie das Erstellen von Paarung.
-	\item \glqq Spielen\grqq von Partien in Ausreichender Menge um den besseren Würfel in der Paarung zu bestimmen.
-	\item Vergleich von den Ergebnissen der einzelnen Partien um den besten Würfel von allen gegeben Würfeln zu Bestimmen.
+	
+	\item Bestimmung der Spieler mit verwendeten Würfeln aus der gegebenen .txt Datei. Sowie das Erstellen von Paarungen.
+	\item \glqq Spielen\grqq\space von Partien in Ausreichender Menge um den besseren Würfel in der Paarung zu bestimmen.
+	\item Vergleich von den Ergebnissen der einzelnen Partien um den besten Würfel von allen gegeben Würfeln zu Bestimmen.	
 \end{enumerate}
+Die Eigentliche Logik der Aufgabe befindet sich im zweiten Punkt. Hier müssen die Gegeben Regeln des Mensch ärgere dich nicht Spiels berücksichtigt werden. Die hierbei wichtigsten Regeln sind:\\
 \begin{wrapfigure}{r}{0.4\textwidth} 
-	\includegraphics[width=0.15\textwidth]{start}
 	\centering
+	\includegraphics[width=0.15\textwidth]{start}	
 	\caption{Startfeld/ A-Feld}
 	\label{fig:Startfeld}
 \end{wrapfigure}
-Die Eigentliche Logik der Aufgabe befindet sich im zweiten Punkt. Hier müssen die Gegeben Regeln des Mensch ärgere dich nicht Spiels berücksichtigt werden. Die hierbei wichtigsten Regeln sind:\\
 
-
-\begin{wrapfigure}{r}{0.5\textwidth} 
-	\includegraphics[width=0.1\textwidth]{goal}	
+\begin{wrapfigure}{r}{0.45\textwidth} 
 	\centering
+	\includegraphics[width=0.1\textwidth]{goal}		
 	\caption{Zielfelder [a, b, c, d]}
 	\label{fig:Zielfelder}
 \end{wrapfigure}
@@ -148,9 +149,9 @@ Die Eigentliche Logik der Aufgabe befindet sich im zweiten Punkt. Hier müssen d
 	\item [$\bullet$]Bei einer Sechs wird falls möglich eine eigene Figur auf das Feld A (Abbildung \ref{fig:Startfeld}) der eigenen Farbe gestellt.
 	\item [$\bullet$] Eine Gegnerische Figur die das Feld besetzt wird beim betreten geschlagen (zurück auf eines der B Felder).
 	\item [$\bullet$] Die vorderste Figur wird immer als erstes versucht zu bewegen (Abweichung von den Offiziellen Regel)
-	\item [$\bullet$] Die Zielfelder [a, b, c, d] (Abbildung \ref{fig:Zielfelder}) müssen genau erreicht werden. Es dürfen keine \glqq Augenzahlen \grqq verfallen
+	\item [$\bullet$] Die Zielfelder [a, b, c, d] (Abbildung \ref{fig:Zielfelder}) müssen genau erreicht werden. Es dürfen keine \glqq Augenzahlen \grqq\space verfallen
 	\item [$\bullet$] Kann die vorderste Figur nicht bewegt werden, wird so lange die nächste weiteste Figur versucht zu bewegen.
-	\item [$\bullet$] Kann keine der Figuren auf der \glqq Laufbahn \grqq bewegt werden, verfällt der Zug.
+	\item [$\bullet$] Kann keine der Figuren auf der \glqq Laufbahn\grqq \space bewegt werden, verfällt der Zug.
 	\item [$\bullet$] Felder auf denen eine eigene Figur steht können nicht betreten werden. Auf den Zielfeldern dürfen eigene Figuren nicht übersprungen werden.
 	\item [$\bullet$] Die Spieler führen ihre Züge immer im wechsel aus.
 \end{enumerate}
@@ -181,7 +182,7 @@ Für die Ermittlung der \glqq Matche\grqq wird die Textdatei ausgelesen und für
 \end{wraptable}
 Spiele gegen sich selbst werden dabei ignoriert. Dadurch wird sicher gestellt, dass jeder Spieler zweimal gegen jeden Anderen Spieler antritt (Hin- und Rückrunde mit getauschten Seiten). Die Matrix wird mit Hilfe einer doppelten foreach() Schleife erstellt, die für jeden Spieler Spiele erstellt (für jeden eins).
 \subsection{Ausführung der \glqq Matche\grqq}
-Für Jedes Match werden nun so lange \glqq Spiele\grqq gespielt, bis ein eindeutiger Sieger der beiden Spieler zu erkennen ist. Als ausreichende Menge von Spielen werden 40 festgelegt. Um die Laufzeit des Programms zu optimieren, wird bei einen bestimmten Verhältnis von Siegen das Match vorzeitig beendet.
+Für Jedes Match werden nun so lange \glqq Spiele\grqq \space gespielt, bis ein eindeutiger Sieger der beiden Spieler zu erkennen ist. Als ausreichende Menge von Spielen werden 40 festgelegt. Um die Laufzeit des Programms zu optimieren, wird bei einen bestimmten Verhältnis von Siegen das Match vorzeitig beendet:
 \begin{enumerate}
 	\item[$\bullet$] Vier Siege ohne gegen Sieg.	
 	\item[$\bullet$] Ein Verhältnis von größer 4:1 bei bis zu 10 Spielen insgesamt.
@@ -192,7 +193,7 @@ Die Laufbahn wird über ein eindimensionales Array von Integer dargestellt. Jede
 \begin{enumerate}
 	\item[$\bullet$] Spielfiguren (Mit Eigenschaft Position als Integer)
 	\item[$\bullet$] Startfeld (\glqq A Felder\grqq) je nach Spieler 1 oder 21.
-	\item[$\bullet$] \glqq Zieleingang\grqq  je nach Spieler 20 oder 40 als Abzweigung zu den Zielfeldern.	
+	\item[$\bullet$] \glqq Zieleingang\grqq \space je nach Spieler 20 oder 40 als Abzweigung zu den Zielfeldern.	
 \end{enumerate} 
 Bis einer der Spieler alle Figuren auf den Zielfeldern stehen hat, führen beide im Wechsel je immer einen Zug aus.
 \subsection{Durchführen eines Zugs}
