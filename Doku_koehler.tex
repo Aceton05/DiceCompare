@@ -6,6 +6,8 @@
 \usepackage{wrapfig}
 %\usepackage[english]{babel} 
 \usepackage{verbatim}
+\usepackage{tcolorbox}
+
 
 % Die nächsten vier Felder bitte anpassen:
 \newcommand{\Aufgabe}{Aufgabe 4: Würfelglück } % Aufgabennummer und Aufgabennamen angeben
@@ -84,6 +86,8 @@ classoffset=0,
 % style for strings
 stringstyle=\color{red}\ttfamily,
 }
+\tcbset{colframe=cloudwhite!50!cloudwhite,colupper=red!50!black,
+	fonttitle=\bfseries,nobeforeafter,center title}
 
 
 % Diese beiden Pakete müssen zuletzt geladen werden
@@ -199,7 +203,11 @@ Bis einer der Spieler alle Figuren auf den Zielfeldern stehen hat, führen beide
 \section{Beispiele}
 \subsection{wuerfel0.txt}
 Eingabe:
-\verbatiminput{Textfiles/wuerfel0.txt}
+
+\begin{tcolorbox}[center,width=12cm,title=Textfiles/wuerfel0.txt]
+	\centering
+	\verbatiminput{Textfiles/wuerfel0.txt}
+\end{tcolorbox}
 Ausgabe:
 \verbatiminput{Textfiles/wuerfel0_result.txt}
 \subsection{wuerfel1.txt}
