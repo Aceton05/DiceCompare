@@ -11,11 +11,11 @@ namespace DiceCompare
         public static List<MatchUp> Matchups { get; private set; }
         public static string FilePath { get; private set; }
         /// <summary>
-        /// Reades the given file to create games of "Mensch aerger dich nicht". The program determinates witch of the dices,
-        /// given from the file, is the best to play this game. The program is part of the "40. Bundeswettbewerb Informatik"
+        /// Reads the given file to create games of "Mensch aergere dich nicht". The program determines which of the dice
+        /// read from the file is the best to play this game. The program is part of the "40. Bundeswettbewerb Informatik".
         /// More infos about the task at:
         /// https://bwinf.de/fileadmin/bundeswettbewerb/40/Bundeswettbewerb-Aufgabenblatt.pdf
-        /// You can find the repositorie at: https://github.com/Aceton05/DiceCompare        /// 
+        /// You can find the repository at: https://github.com/Aceton05/DiceCompare        /// 
         /// </summary>
         /// <param name="args">Path of the file to work with</param>
         static void Main(string[] args)
@@ -28,15 +28,15 @@ namespace DiceCompare
 
         }
         /// <summary>
-        /// Creates Player from the given File
+        /// Creates Player from the given file
         /// </summary>
-        /// <param name="args">First Program arg should be the filepath</param>
+        /// <param name="args">First program arg should be the filepath</param>
         /// <returns>List of Players</returns>
         private static List<Player> SetPlayers(string[] args)
         {
             if (args.Length == 0)
             {
-                Console.WriteLine("No File given. Please enter filepath");
+                Console.WriteLine("No file given. Please enter filepath");
                 FilePath = Console.ReadLine();
             }
             else
@@ -46,8 +46,7 @@ namespace DiceCompare
             {
                 try
                 {
-                    string fileText = File.ReadAllText(FilePath);
-                    var lines = fileText.Split("\r\n");
+                    string[] lines = FileHelper.FileToStringArray(FilePath);
                     var players = new List<Player>();
                     for (int i = 1; i <= int.Parse(lines[0]); i++)
                         players.Add(new Player(lines[i]));
@@ -55,15 +54,16 @@ namespace DiceCompare
                 }
                 catch
                 {
-                    Console.WriteLine("Can't use this File. Make sure it's formatet corekt. \n Please enter filepath");
+                    Console.WriteLine("Can't use this file. Make sure it's formated correctly. \n Please enter filepath");
                     FilePath = Console.ReadLine();
                 }
             }
             return null;
-        }
+        }       
+
         /// <summary>
-        /// Creates Matchups betwen all given player.
-        /// Each player faces the other as host an as oponent.
+        /// Creates Matchups between all given players.
+        /// Each player faces the other as host and as opponent.
         /// </summary>
         /// <param name="players"></param>
         /// <returns>List of MatchUps</returns>
@@ -77,7 +77,7 @@ namespace DiceCompare
             return matchups;
         }
         /// <summary>
-        /// Plays the Game "Mensch aerger dich nicht" multible times and saves the result for the given MatchUps
+        /// Plays the game "Mensch aerger dich nicht" multible times and saves the result for the given MatchUps
         /// </summary>
         /// <param name="matchups">List of MatchUps to find a winner</param>
         /// <returns>Given list of MatchUp with winner set</returns>
@@ -106,8 +106,7 @@ namespace DiceCompare
                 resultText += $"{i}. Place: Player {p.Name}\n Matches won: {p.Victoris} Games played: {p.GamesPlayed}\n";
 
             }
-            Console.WriteLine(resultText);
-            File.WriteAllText(FilePath.Replace(".txt", "_result.txt"), resultText);
+            FileHelper.WriteOutputToFile(resultText, FilePath);            
             Console.WriteLine("Press any key to close this window . . .");
             Console.ReadKey();
         }
