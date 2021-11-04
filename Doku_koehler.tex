@@ -187,9 +187,10 @@ Für Jedes Match werden nun so lange \glqq Spiele\grqq \space gespielt, bis ein 
 	\item[$\bullet$] Vier Siege ohne gegen Sieg.	
 	\item[$\bullet$] Ein Verhältnis von größer 4:1 bei bis zu 10 Spielen insgesamt.
 	\item[$\bullet$] Ein Verhältnis von größer 2:1 bei über 10 Spielen. 
+	\item[$\bullet$] Das Spiel wird abgebrochen wenn für mehr als 10 Runde kein Spieler eine Figur bewegen konnte.(Auch menschliche Spieler würden dann aufhören)
 \end{enumerate}
 \subsection{Spielen der \glqq Spiele\grqq}
-Die Laufbahn wird über ein eindimensionales Array von Integer dargestellt. Jeder der Beiden Spieler erhält die Eigenschaften:
+Die Laufbahn wird über ein eindimensionales Array von Integer mit den Werten 1 - 40 dargestellt. Jeder der Beiden Spieler erhält die Eigenschaften:
 \begin{enumerate}
 	\item[$\bullet$] Spielfiguren (Mit Eigenschaft Position als Integer)
 	\item[$\bullet$] Startfeld (\glqq A Felder\grqq) je nach Spieler 1 oder 21.
@@ -202,7 +203,7 @@ Bis einer der Spieler alle Figuren auf den Zielfeldern stehen hat, führen beide
  
 
 \section{Beispiele}
-\subsection{Beispiel: wuerfel0.txt}
+\subsection{Beispiel 1: wuerfel0.txt}
 Eingabe:
 \begin{tcolorbox}[center,width=12cm,title=Textfiles/wuerfel0.txt]
 	\centering
@@ -214,7 +215,7 @@ Ausgabe:
 	
 	\verbatiminput{Textfiles/wuerfel0_result.txt}
 \end{tcolorbox}
-\subsection{Beispiel: wuerfel1.txt}
+\subsection{Beispiel 2: wuerfel1.txt}
 Eingabe:
 \begin{tcolorbox}[center,width=12cm,title=Textfiles/wuerfel1.txt]
 	\centering
@@ -226,7 +227,7 @@ Ausgabe:
 	
 	\verbatiminput{Textfiles/wuerfel1_result.txt}
 \end{tcolorbox}
-\subsection{Beispiel: wuerfel2.txt}
+\subsection{Beispiel 3: wuerfel2.txt}
 Eingabe:
 \begin{tcolorbox}[center,width=12cm,title=Textfiles/wuerfel2.txt]
 	\centering
@@ -238,7 +239,7 @@ Ausgabe:
 	
 	\verbatiminput{Textfiles/wuerfel2_result.txt}
 \end{tcolorbox}
-\subsection{Beispiel: wuerfel3.txt}
+\subsection{Beispiel 4: wuerfel3.txt}
 Eingabe:
 \begin{tcolorbox}[center,width=12cm,title=Textfiles/wuerfel3.txt]
 	\centering

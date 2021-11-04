@@ -40,9 +40,9 @@ namespace DiceCompare
             var unreadable = true;
             while (unreadable)
             {
-                string fileText = File.ReadAllText(FilePath);
                 try
                 {
+                    string fileText = File.ReadAllText(FilePath);
                     var lines = fileText.Split("\r\n");
                     var players = new List<Player>();
                     for (int i = 1; i < int.Parse(lines[0]); i++)
@@ -93,13 +93,13 @@ namespace DiceCompare
             var victoris = new Dictionary<Player, int>();
             foreach (var player in Players)
                 player.Victoris = matches.Where(x => x.Winner.Name == player.Name).Count();
-            Players=Players.OrderByDescending(x=>x.Victoris).ToList();
+            Players = Players.OrderByDescending(x => x.Victoris).ToList();
             var i = 0;
             foreach (var p in Players)
             {
                 i++;
                 resultText += $"{i}. Place: Player {p.Name}\n Matches won: {p.Victoris} Games played: {p.GamesPlayed}\n";
-               
+
             }
             Console.WriteLine(resultText);
             File.WriteAllText(FilePath.Replace(".txt", "_result.txt"), resultText);

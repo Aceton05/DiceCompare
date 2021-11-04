@@ -114,7 +114,6 @@ namespace DiceCompare
                         {
                             moved = true;
                             player.NoMoveCount++;
-                            //Console.WriteLine($"{player.Name} coundn't move {player.NoMoveCount} times. With a role of {role} Positions: {string.Join(",",player.Figures)}");
                         }
                     }
                 }
