@@ -31,23 +31,23 @@ namespace DiceCompare
             var playerCount = winner.Where(x => x.Name == match.Player.Name).Count();
             var oponentCount = winner.Where(x => x.Name == match.Oponent.Name).Count();
             var noOneCount = winner.Where(x => x.Name == "No Winner").Count();
-            if(noOneCount>6)
+            if(noOneCount>10)
             {
                 match.Winner = new Player("No Winner", true);
                 throw new Exception($"There Cant be a winner in this Match {match.Player.Name} vs. {match.Oponent.Name}");
             }
             switch (match.Games.Count)
             {
-                case int n when (n < 4):
+                case int n when (n < 5):
                     return false;
-                case 4:
-                    if (playerCount == 4)
+                case 5:
+                    if (playerCount == 5)
                     {
                         match.Winner = match.Player;
                         Console.WriteLine($"Player:{match.Winner.Name} won after {match.Games.Count} Games");
                         return true;
                     }
-                    else if (oponentCount == 4)
+                    else if (oponentCount == 5)
                     {
                         match.Winner = match.Oponent;
                         Console.WriteLine($"Player:{match.Winner.Name} won after {match.Games.Count} Games");
@@ -55,7 +55,7 @@ namespace DiceCompare
                     }
                     else
                         return false;
-                case int n when (n < 10):
+                case int n when (n < 11):
                     if ((playerCount / (oponentCount + noOneCount)) > 4)
                     {
                         match.Winner = match.Player;

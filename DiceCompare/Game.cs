@@ -23,15 +23,15 @@ namespace DiceCompare
             Player.Startfield = 1;
             Player.GoalEntrance = 40;
             Player.NoMoveCount = 0;
-            Player.Figures = new List<int?>() { null, null, null, null };
+            Player.Figures = new List<int>() { -100, -100, -100, -100 };
 
             Oponent.Startfield = 21;
             Oponent.GoalEntrance = 20;
             Oponent.NoMoveCount = 0;
-            Oponent.Figures = new List<int?>() { null, null, null, null };
+            Oponent.Figures = new List<int>() { -100, -100, -100, -100 };
 
             activ = Player.Name;
-            while (!((Player.Figures.Where(x => x > 100).Count() == 4) || (Oponent.Figures.Where(x => x > 100).Count() == 4)))
+            while (!((Player.Figures.Where(x => x >= 100).Count() == 4) || (Oponent.Figures.Where(x => x >= 100).Count() == 4)))
             {
                 if (activ == Player.Name)
                 {
@@ -45,6 +45,7 @@ namespace DiceCompare
                     var role = Oponent.Dice.Role();
                     Oponent.Figures = TryMoveAny(Oponent, role);
                     Player.Figures = SendHome(Oponent.Figures, Player.Figures);
+
                     activ = Player.Name;
                 }
                 if (Player.NoMoveCount > 10 && Oponent.NoMoveCount > 10)
@@ -59,27 +60,30 @@ namespace DiceCompare
                 Winner = Player;
             else
                 Winner = new Player("No Winner", true);
+            Player.GamesPlayed++;
+            Oponent.GamesPlayed++;
+
         }
 
-        private List<int?> SendHome(List<int?> figuresActive, List<int?> figuresPassive)
+        private List<int> SendHome(List<int> figuresActive, List<int> figuresPassive)
         {
             var inter = figuresPassive.Intersect(figuresActive);
-            if (inter.Count() > 0 &&inter.First()!=null &&inter!=null)
+            if (inter.Count() > 0 && inter.First() != -100 && inter != null)
             {                
-                Console.WriteLine($"Send Home: {inter.First()}");
-                figuresPassive[figuresPassive.IndexOf(inter.First())] = null;                
+                figuresPassive[figuresPassive.IndexOf(inter.First())] = -100;
+                figuresPassive = figuresPassive.OrderByDescending(x=>x).ToList();
             }
-            
+
             return figuresPassive;
         }
 
-        private List<int?> TryMoveAny(Player player, int role)
+        private List<int> TryMoveAny(Player player, int role)
         {
-            if (role == 6 && player.Figures.Contains(null) && !player.Figures.Contains(player.Startfield))
-                player.Figures[player.Figures.IndexOf(player.Figures.FirstOrDefault(x => x == null))] = player.Startfield;
-            else if (player.Figures.Where(x => x == null).Count() < 4)
+            if (role == 6 && player.Figures.Contains(-100) && !player.Figures.Contains(player.Startfield))
+                player.Figures[player.Figures.IndexOf(player.Figures.FirstOrDefault(x => x == -100))] = player.Startfield;
+            else if (player.Figures.Where(x => x == -100).Count() < 4)
             {
-                var i = player.Figures.Where(x => x != null).Count();
+                var i = 0;
                 var moved = false;
                 while (!moved)
                 {
@@ -96,23 +100,28 @@ namespace DiceCompare
                     }
                     else if (CheckAtiveFigureCanMoveIntoHome(player, role, activFigure))
                     {
-                        player.Figures[activFigure] += role + 100;
+                        if (player.Figures[activFigure] >= 100)
+                            player.Figures[activFigure] += role;
+                        else
+                            player.Figures[activFigure] += role + 100;
                         moved = true;
                         player.NoMoveCount = 0;
                     }
                     else
                     {
-                        i--;
-                        if (i <= 0)
+                        i++;
+                        if (i >=4)
                         {
                             moved = true;
                             player.NoMoveCount++;
+                            //Console.WriteLine($"{player.Name} coundn't move {player.NoMoveCount} times. With a role of {role} Positions: {string.Join(",",player.Figures)}");
                         }
                     }
                 }
             }
             if (role == 6)
                 player.Figures = TryMoveAny(player, player.Dice.Role());
+            player.Figures = player.Figures.OrderByDescending(x => x).ToList();
             return player.Figures;
 
         }
@@ -120,9 +129,11 @@ namespace DiceCompare
         private bool CheckAtiveFigureCanMoveIntoHome(Player player, int role, int activFigure)
         {
             var figurePosition = player.Figures[activFigure];
-            if (player.Figures.Contains(figurePosition + role + 100) && (figurePosition + role) != player.GoalEntrance)
+            if (player.Figures.Contains(figurePosition + role + 100) || figurePosition == -100)
                 return false;
             if (figurePosition + role + 100 <= player.GoalEntrance + 104)
+                return true;
+            if (figurePosition + role <= player.GoalEntrance + 104 && figurePosition>100)
                 return true;
             else
                 return false;
@@ -130,8 +141,8 @@ namespace DiceCompare
 
         private bool CheckAtiveFigureCanMove(Player player, int role, int activFigure)
         {
-            var figurePosition = player.Figures[activFigure];
-            if (player.Figures.Contains(figurePosition + role) && (figurePosition + role) != player.GoalEntrance)
+            var figurePosition = player.Figures[activFigure];            
+            if (player.Figures.Contains(figurePosition + role)||figurePosition==-100)
                 return false;
             if (player.Name == Player.Name)
             {
@@ -148,8 +159,7 @@ namespace DiceCompare
 
         private static int GetActivFigure(Player player, int i)
         {
-            var j = player.Figures.Where(x => x != null).Count();
-            return (j - i);
+            return i;
         }
     }
 }

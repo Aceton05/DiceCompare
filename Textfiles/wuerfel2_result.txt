@@ -1,0 +1,11 @@
+
+Total Players: 4
+Total Matches: 12
+1. Place: Player "W6 [1,1,6,6,6,6]"
+ Matches won: 6 Games played: 31
+2. Place: Player "W6 [1,1,1,6,6,6]"
+ Matches won: 4 Games played: 33
+3. Place: Player "W6 [1,1,1,1,6,6]"
+ Matches won: 2 Games played: 32
+4. Place: Player "W6 [1,1,1,1,1,6]"
+ Matches won: 0 Games played: 30

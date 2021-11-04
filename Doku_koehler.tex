@@ -71,7 +71,7 @@ commentstyle=\color{green},
 morecomment=[l]{//}, 
 morecomment=[s]{/*}{*/}, 
 % keywords for classes
-morekeywords={  List, Program,MatchResult,MatchUp,Player,Random,Console,File,for },
+morekeywords={  List, Program,MatchResult,MatchUp,Player,Random,Console,File,Exception,Dictionary,for },
 keywordstyle=\color{cyan},
 identifierstyle=\color{cloudwhite},
 % keywords for types
@@ -79,8 +79,8 @@ emph={int,char,double,float,unsigned,void,bool,var,string,private,static,new,cla
 emphstyle={\color{blue}},
 % other keywords to highlight
 classoffset=1, 
-otherkeywords={throw,return,break},
-morekeywords={throw,return,break},
+otherkeywords={throw,return,break,try,catch},
+morekeywords={throw,return,break,try,catch},
 keywordstyle=\color{mymauve},
 classoffset=0,
 % style for strings
@@ -202,46 +202,58 @@ Bis einer der Spieler alle Figuren auf den Zielfeldern stehen hat, führen beide
  
 
 \section{Beispiele}
-\subsection{wuerfel0.txt}
+\subsection{Beispiel: wuerfel0.txt}
 Eingabe:
-
 \begin{tcolorbox}[center,width=12cm,title=Textfiles/wuerfel0.txt]
 	\centering
 	\verbatiminput{Textfiles/wuerfel0.txt}
 \end{tcolorbox}
 Ausgabe:
-\verbatiminput{Textfiles/wuerfel0_result.txt}
-\subsection{wuerfel1.txt}
+\centering
+\begin{tcolorbox}[center,width=12cm,title=Textfiles/wuerfel0\_result.txt]
+	
+	\verbatiminput{Textfiles/wuerfel0_result.txt}
+\end{tcolorbox}
+\subsection{Beispiel: wuerfel1.txt}
 Eingabe:
-\verbatiminput{Textfiles/wuerfel1.txt}
+\begin{tcolorbox}[center,width=12cm,title=Textfiles/wuerfel1.txt]
+	\centering
+	\verbatiminput{Textfiles/wuerfel1.txt}
+\end{tcolorbox}
 Ausgabe:
-\verbatiminput{Textfiles/wuerfel1_result.txt}
-\subsection{wuerfel2.txt}
+\centering
+\begin{tcolorbox}[center,width=12cm,title=Textfiles/wuerfel1\_result.txt]
+	
+	\verbatiminput{Textfiles/wuerfel1_result.txt}
+\end{tcolorbox}
+\subsection{Beispiel: wuerfel2.txt}
 Eingabe:
-\verbatiminput{Textfiles/wuerfel2.txt}
+\begin{tcolorbox}[center,width=12cm,title=Textfiles/wuerfel2.txt]
+	\centering
+	\verbatiminput{Textfiles/wuerfel2.txt}
+\end{tcolorbox}
 Ausgabe:
-\verbatiminput{Textfiles/wuerfel2_result.txt}
-\subsection{wuerfel3.txt}
+\centering
+\begin{tcolorbox}[center,width=12cm,title=Textfiles/wuerfel2\_result.txt]
+	
+	\verbatiminput{Textfiles/wuerfel2_result.txt}
+\end{tcolorbox}
+\subsection{Beispiel: wuerfel3.txt}
 Eingabe:
-\verbatiminput{Textfiles/wuerfel3.txt}
+\begin{tcolorbox}[center,width=12cm,title=Textfiles/wuerfel3.txt]
+	\centering
+	\verbatiminput{Textfiles/wuerfel3.txt}
+\end{tcolorbox}
 Ausgabe:
-\verbatiminput{Textfiles/wuerfel3_result.txt}
-\section{Quellcode}
-%Unwichtige Teile des Programms sollen hier nicht abgedruckt werden. Dieser Teil sollte nicht mehr als 2–3 Seiten umfassen, maximal 10.
-Beispiel-Code:
-\begin{lstlisting}
-static void Main(string[] args)
-        {
-//test Comment!
-            List<Player> players = SetPlayers(args);
-            List<MatchUps> matchups = CreateMatchups(players);
-            List<GameResults> gameresults = PlayGames(matchups);
-            RankPlayers(gameresults);
-	 Console.WriteLine("Test string");
-            
-        }
-\end{lstlisting}
-Program.cs:
-\lstinputlisting{DiceCompare/Program.cs}
+\centering
+\begin{tcolorbox}[center,width=12cm,title=Textfiles/wuerfel3\_result.txt]
+	
+	\verbatiminput{Textfiles/wuerfel3_result.txt}
+\end{tcolorbox}
 
+\section{Quellcode}
+\subsection{Program.cs:}
+\lstinputlisting{DiceCompare/Program.cs}
+\subsection{Game.cs:}
+\lstinputlisting{DiceCompare/Game.cs}
 \end{document}

@@ -11,6 +11,7 @@ namespace DiceCompare
             var splits = line.Split();
             Dice = new Dice(splits[0], splits.Skip(1).ToArray());
             Name = $"\"W{Dice.SideCount} [{string.Join(",", Dice.Sides)}]\"";
+            GamesPlayed = 0;
         }
         public Player(string name,bool onlyName)
         {
@@ -21,10 +22,12 @@ namespace DiceCompare
         public string Name { get; private set; }
         public int Startfield { get; internal set; }
         public int GoalEntrance { get; internal set; }
-        public List<int?> Figures { get; internal set; }
+        public List<int> Figures { get; internal set; }
         public int NoMoveCount { get; internal set; }
+        public int GamesPlayed { get; internal set; }
+        public int Victoris { get; internal set; }
 
-        internal List<int?> GetFigurePositions()
+        internal List<int> GetFigurePositions()
         {
             return Figures;
         }

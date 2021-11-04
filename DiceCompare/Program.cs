@@ -9,6 +9,7 @@ namespace DiceCompare
     {
         public static List<Player> Players { get; private set; }
         public static List<MatchUp> Matchups { get; private set; }
+        public static string FilePath { get; private set; }
         /// <summary>
         /// 
         /// </summary>
@@ -29,18 +30,17 @@ namespace DiceCompare
         /// <returns>List of Players</returns>
         private static List<Player> SetPlayers(string[] args)
         {
-            string filePath;
             if (args.Length == 0)
             {
                 Console.WriteLine("No File given. Please enter filepath");
-                filePath = Console.ReadLine();
+                FilePath = Console.ReadLine();
             }
             else
-                filePath = args[0];
+                FilePath = args[0];
             var unreadable = true;
             while (unreadable)
             {
-                string fileText = File.ReadAllText(filePath);
+                string fileText = File.ReadAllText(FilePath);
                 try
                 {
                     var lines = fileText.Split("\r\n");
@@ -52,7 +52,7 @@ namespace DiceCompare
                 catch
                 {
                     Console.WriteLine("Can't use this File. Make sure it's formatet corekt. \n Please enter filepath");
-                    filePath = Console.ReadLine();
+                    FilePath = Console.ReadLine();
                 }
             }
             return null;
@@ -88,15 +88,23 @@ namespace DiceCompare
         /// </summary>
         /// <param name="matches"></param>
         private static void RankPlayers(List<MatchUp> matches)
-        {            
-            Console.WriteLine($"\nTotal Matches: {matches.Count}\n");
-            var victoris = new Dictionary<string, int>();
+        {
+            string resultText = $"\nTotal Players: {Players.Count}\nTotal Matches: {matches.Count}\n";
+            var victoris = new Dictionary<Player, int>();
             foreach (var player in Players)
-                victoris.Add(player.Name, matches.Where(x => x.Winner.Name == player.Name).Count());
-            victoris = victoris.OrderByDescending(d => d.Value).ToDictionary(d => d.Key, d => d.Value);
-            foreach (var v in victoris)
-                Console.WriteLine($"Player {v.Key} won {v.Value} matches");
-            Console.ReadLine();
+                player.Victoris = matches.Where(x => x.Winner.Name == player.Name).Count();
+            Players=Players.OrderByDescending(x=>x.Victoris).ToList();
+            var i = 0;
+            foreach (var p in Players)
+            {
+                i++;
+                resultText += $"{i}. Place: Player {p.Name}\n Matches won: {p.Victoris} Games played: {p.GamesPlayed}\n";
+               
+            }
+            Console.WriteLine(resultText);
+            File.WriteAllText(FilePath.Replace(".txt", "_result.txt"), resultText);
+            Console.WriteLine("Press any key to close this window . . .");
+            Console.ReadKey();
         }
 
         /// <summary>
@@ -113,13 +121,13 @@ namespace DiceCompare
                 while (!winnerfound)
                 {
                     match.PlayAnOtherGame();
-                    winnerfound = match.TryFindWinner(match);                    
-                }               
+                    winnerfound = match.TryFindWinner(match);
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);                
-            }     
+                Console.WriteLine(ex.Message);
+            }
             return match;
         }
     }
