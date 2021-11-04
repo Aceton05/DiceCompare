@@ -11,9 +11,13 @@ namespace DiceCompare
         public static List<MatchUp> Matchups { get; private set; }
         public static string FilePath { get; private set; }
         /// <summary>
-        /// 
+        /// Reades the given file to create games of "Mensch aerger dich nicht". The program determinates witch of the dices,
+        /// given from the file, is the best to play this game. The program is part of the "40. Bundeswettbewerb Informatik"
+        /// More infos about the task at:
+        /// https://bwinf.de/fileadmin/bundeswettbewerb/40/Bundeswettbewerb-Aufgabenblatt.pdf
+        /// You can find the repositorie at: https://github.com/Aceton05/DiceCompare        /// 
         /// </summary>
-        /// <param name="args"></param>
+        /// <param name="args">Path of the file to work with</param>
         static void Main(string[] args)
         {
             Players = SetPlayers(args);
@@ -58,10 +62,11 @@ namespace DiceCompare
             return null;
         }
         /// <summary>
-        /// 
+        /// Creates Matchups betwen all given player.
+        /// Each player faces the other as host an as oponent.
         /// </summary>
         /// <param name="players"></param>
-        /// <returns></returns>
+        /// <returns>List of MatchUps</returns>
         private static List<MatchUp> CreateMatchups(List<Player> players)
         {
             var matchups = new List<MatchUp>();
@@ -72,10 +77,10 @@ namespace DiceCompare
             return matchups;
         }
         /// <summary>
-        /// 
+        /// Plays the Game "Mensch aerger dich nicht" multible times and saves the result for the given MatchUps
         /// </summary>
-        /// <param name="matchups"></param>
-        /// <returns></returns>
+        /// <param name="matchups">List of MatchUps to find a winner</param>
+        /// <returns>Given list of MatchUp with winner set</returns>
         private static List<MatchUp> PlayMatchups(List<MatchUp> matchups)
         {
             var results = new List<MatchUp>();
@@ -84,9 +89,9 @@ namespace DiceCompare
             return results;
         }
         /// <summary>
-        /// 
+        /// Sorts the Players based on the victories in the given MatchUps
         /// </summary>
-        /// <param name="matches"></param>
+        /// <param name="matches">List of played MatchUps</param>
         private static void RankPlayers(List<MatchUp> matches)
         {
             string resultText = $"\nTotal Players: {Players.Count}\nTotal Matches: {matches.Count}\n";
@@ -108,10 +113,10 @@ namespace DiceCompare
         }
 
         /// <summary>
-        /// 
+        /// Plays multible Games to find the winner of the MatchUp
         /// </summary>
-        /// <param name="match"></param>
-        /// <returns></returns>
+        /// <param name="match">MatchUp to find a winner for</param>
+        /// <returns>MatchUp with winner set</returns>
         private static MatchUp PlayGames(MatchUp match)
         {
             Console.WriteLine($"-----------------\n{match.Player.Name} vs. {match.Oponent.Name}\n");

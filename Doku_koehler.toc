@@ -5,12 +5,12 @@
 \contentsline {subsection}{\numberline {2.2}Ausf\IeC {\"u}hrung der \glqq Matche\grqq }{2}{}%
 \contentsline {subsection}{\numberline {2.3}Spielen der \glqq Spiele\grqq }{3}{}%
 \contentsline {subsection}{\numberline {2.4}Durchf\IeC {\"u}hren eines Zugs}{3}{}%
-\contentsline {section}{\numberline {3}Beispiele}{3}{}%
-\contentsline {subsection}{\numberline {3.1}Beispiel 1: wuerfel0.txt}{3}{}%
+\contentsline {section}{\numberline {3}Beispiele}{4}{}%
+\contentsline {subsection}{\numberline {3.1}Beispiel 1: wuerfel0.txt}{4}{}%
 \contentsline {subsection}{\numberline {3.2}Beispiel 2: wuerfel1.txt}{4}{}%
 \contentsline {subsection}{\numberline {3.3}Beispiel 3: wuerfel2.txt}{5}{}%
-\contentsline {subsection}{\numberline {3.4}Beispiel 4: wuerfel3.txt}{5}{}%
+\contentsline {subsection}{\numberline {3.4}Beispiel 4: wuerfel3.txt}{6}{}%
 \contentsline {section}{\numberline {4}Quellcode}{6}{}%
 \contentsline {subsection}{\numberline {4.1}Program.cs:}{6}{}%
-\contentsline {subsection}{\numberline {4.2}Game.cs:}{8}{}%
+\contentsline {subsection}{\numberline {4.2}Game.cs:}{9}{}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

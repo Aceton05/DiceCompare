@@ -2,7 +2,7 @@
 \usepackage{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8x]{inputenc}
-\usepackage[a4paper,margin=2.0cm,footskip=1.0cm]{geometry}
+\usepackage[a4paper,margin=2.5cm,footskip=0.5cm]{geometry}
 \usepackage{wrapfig}
 %\usepackage[english]{babel} 
 \usepackage{verbatim}
@@ -11,7 +11,7 @@
 
 % Die nächsten vier Felder bitte anpassen:
 \newcommand{\Aufgabe}{Aufgabe 4: Würfelglück } % Aufgabennummer und Aufgabennamen angeben
-\newcommand{\TeamId}{?????}                       % Team-ID aus dem PMS angeben
+\newcommand{\TeamId}{00695}                       % Team-ID aus dem PMS angeben
 \newcommand{\TeamName}{234bcd}                 % Team-Namen angeben
 \newcommand{\Namen}{Michael Köhler}           % Namen der Bearbeiter/-innen dieser Aufgabe angeben
  
@@ -75,7 +75,7 @@ morekeywords={  List, Program,MatchResult,MatchUp,Player,Random,Console,File,Exc
 keywordstyle=\color{cyan},
 identifierstyle=\color{cloudwhite},
 % keywords for types
-emph={int,char,double,float,unsigned,void,bool,var,string,private,static,new,class,using,true,false,null},
+emph={int,char,double,float,unsigned,void,bool,var,string,private,static,new,class,using,true,false,null,get,set,public,namespace},
 emphstyle={\color{blue}},
 % other keywords to highlight
 classoffset=1, 
@@ -114,10 +114,11 @@ stringstyle=\color{red}\ttfamily,
 
 \section{Lösungsidee}
 
- \begin{wrapfigure}{r}{0.3\textwidth} 
+ \begin{wrapfigure}{r}{0.2\textwidth} 
  	\centering
  	\includegraphics[width=0.11\textwidth]{home}	 	
- 	\caption{B-Felder}
+ 	\caption{}
+ 	\small{B-Felder}
  	\label{fig:B-Felder}
  \end{wrapfigure}
 Da die Beispielaufgaben unterschiedliche Spieler anzahlen enthalten, muss die Aufgabenstellung in drei
@@ -130,17 +131,19 @@ Teillaufgen unterteilt werden:
 	\item Vergleich von den Ergebnissen der einzelnen Partien um den besten Würfel von allen gegeben Würfeln zu Bestimmen.	
 \end{enumerate}
 Die Eigentliche Logik der Aufgabe befindet sich im zweiten Punkt. Hier müssen die Gegeben Regeln des Mensch ärgere dich nicht Spiels berücksichtigt werden. Die hierbei wichtigsten Regeln sind:\\
-\begin{wrapfigure}{r}{0.4\textwidth} 
+\begin{wrapfigure}{r}{0.2\textwidth} 
 	\centering
-	\includegraphics[width=0.15\textwidth]{start}	
-	\caption{Startfeld/ A-Feld}
+	\includegraphics[width=0.13\textwidth]{start}	
+	\caption{}
+	{\small Startfeld/ A-Feld}
 	\label{fig:Startfeld}
 \end{wrapfigure}
 
-\begin{wrapfigure}{r}{0.45\textwidth} 
+\begin{wrapfigure}{r}{0.3\textwidth} 
 	\centering
 	\includegraphics[width=0.1\textwidth]{goal}		
-	\caption{Zielfelder [a, b, c, d]}
+	\caption{}
+	\small{Zielfelder [a, b, c, d]}
 	\label{fig:Zielfelder}
 \end{wrapfigure}
 \begin{enumerate}
@@ -149,7 +152,7 @@ Die Eigentliche Logik der Aufgabe befindet sich im zweiten Punkt. Hier müssen d
 	\item [$\bullet$]Bei einer Sechs wird falls möglich eine eigene Figur auf das Feld A (Abbildung \ref{fig:Startfeld}) der eigenen Farbe gestellt.
 	\item [$\bullet$] Eine Gegnerische Figur die das Feld besetzt wird beim betreten geschlagen (zurück auf eines der B Felder).
 	\item [$\bullet$] Die vorderste Figur wird immer als erstes versucht zu bewegen (Abweichung von den Offiziellen Regel)
-	\item [$\bullet$] Die Zielfelder [a, b, c, d] (Abbildung \ref{fig:Zielfelder}) müssen genau erreicht werden. Es dürfen keine \glqq Augenzahlen \grqq\space verfallen
+	\item [$\bullet$] Die Zielfelder [a, b, c, d] (Abbildung \ref{fig:Zielfelder}) müssen genau erreicht werden. Es dürfen keine \glqq Augenzahlen\grqq\space verfallen
 	\item [$\bullet$] Kann die vorderste Figur nicht bewegt werden, wird so lange die nächste weiteste Figur versucht zu bewegen.
 	\item [$\bullet$] Kann keine der Figuren auf der \glqq Laufbahn\grqq \space bewegt werden, verfällt der Zug.
 	\item [$\bullet$] Felder auf denen eine eigene Figur steht können nicht betreten werden. Auf den Zielfeldern dürfen eigene Figuren nicht übersprungen werden.
@@ -161,7 +164,7 @@ Die Eigentliche Logik der Aufgabe befindet sich im zweiten Punkt. Hier müssen d
  
 Die Lösungsidee wird in \texttt{C\#} implementiert. Spieler, Spielfiguren und Spielfeld lassen sich sehr gut als Objekte einfach nachvollziehbar darstellen, daher biete sich für die Aufgabe ein Objektorientierte Sprache an.
 \subsection{Erstellung der Spiele /\glqq Matche\grqq} 
-Für die Ermittlung der \glqq Matche\grqq wird die Textdatei ausgelesen und für jede Zeile ein Spieler erstellt mit dem entsprechenden Würfel als Array von Integer. Jeder Spieler wird in einer 2 Dimensionalen Matrix mit jedem Spieler gepaart (Tabelle \ref{table:Matrix}).
+Für die Ermittlung der \glqq Matche\grqq\space wird die Textdatei ausgelesen und für jede Zeile ein Spieler erstellt mit dem entsprechenden Würfel als Array von Integer. Jeder Spieler wird in einer 2 Dimensionalen Matrix mit jedem Spieler gepaart (Tabelle \ref{table:Matrix}).
 \begin{wraptable}{r}{8cm}	
 	\centering
 	\begin{tabular}{|c|c|c|c|c|}	
@@ -198,7 +201,14 @@ Die Laufbahn wird über ein eindimensionales Array von Integer mit den Werten 1 
 \end{enumerate} 
 Bis einer der Spieler alle Figuren auf den Zielfeldern stehen hat, führen beide im Wechsel je immer einen Zug aus.
 \subsection{Durchführen eines Zugs}
-
+Jeder Zug besteht aus mehren Phasen. Zuerst wird auf Basis des Würfels eine Zufallszahl bestimmt. Danach wird versucht einer der eigenen Figuren zu bewegen (Beginnend mit der am weitesten vorne stehenden Figur). Beim Bewegungsversuch werden Folgende Schritte abgehandelt:
+\begin{enumerate}
+	\item[$\bullet$] Bei einer 6 wird eine noch auf den B Feldern stehende auf das freie A-Feld gesetzt.
+	\item[$\bullet$] Die Figur wird um den gewürfelten Wert auf ein freies Feld vorgesetzt.
+	\item[$\bullet$] Ist kein Zug für die Figur möglich bleibt sie Stehen und die nächste wird überprüft.
+	\item[$\bullet$] Bei einer 6 wird ein weiterer Bewegungsversuch gestartet.	
+\end{enumerate}
+Nach der Bewegung werden Gegnerische Figuren, die sich auf den Feldern befinden auf denen die Bewegung der Figuren endete zurück auf die B-Felder gestellt.
 
  
 
