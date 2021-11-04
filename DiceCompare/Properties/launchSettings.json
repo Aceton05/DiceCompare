@@ -2,7 +2,7 @@
   "profiles": {
     "DiceCompare": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\source\\Schule\\DiceCompare\\Textfiles\\wuerfel1.txt"
+      "commandLineArgs": "C:\\source\\Schule\\DiceCompare\\Textfiles\\wuerfel3.txt"
     }
   }
 }
