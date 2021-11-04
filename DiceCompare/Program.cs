@@ -45,7 +45,7 @@ namespace DiceCompare
                     string fileText = File.ReadAllText(FilePath);
                     var lines = fileText.Split("\r\n");
                     var players = new List<Player>();
-                    for (int i = 1; i < int.Parse(lines[0]); i++)
+                    for (int i = 1; i <= int.Parse(lines[0]); i++)
                         players.Add(new Player(lines[i]));
                     return players;
                 }

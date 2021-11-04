@@ -1,13 +1,15 @@
 
-Total Players: 5
-Total Matches: 20
+Total Players: 6
+Total Matches: 30
 1. Place: Player "W4 [1,2,5,6]"
- Matches won: 8 Games played: 44
+ Matches won: 9 Games played: 111
 2. Place: Player "W6 [1,2,3,4,5,6]"
- Matches won: 5 Games played: 85
+ Matches won: 8 Games played: 161
 3. Place: Player "W8 [1,2,3,4,5,6,7,8]"
- Matches won: 4 Games played: 124
-4. Place: Player "W12 [1,2,3,4,5,6,7,8,9,10,11,12]"
- Matches won: 2 Games played: 127
-5. Place: Player "W10 [0,1,2,3,4,5,6,7,8,9]"
- Matches won: 1 Games played: 152
+ Matches won: 5 Games played: 212
+4. Place: Player "W10 [0,1,2,3,4,5,6,7,8,9]"
+ Matches won: 4 Games played: 167
+5. Place: Player "W12 [1,2,3,4,5,6,7,8,9,10,11,12]"
+ Matches won: 4 Games played: 237
+6. Place: Player "W20 [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]"
+ Matches won: 0 Games played: 130
