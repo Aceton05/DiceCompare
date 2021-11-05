@@ -10,9 +10,9 @@ namespace DiceCompare
         internal static string[] FileToStringArray(string filePath)
         {
             string fileText = File.ReadAllText(filePath);
-            var lines = fileText.Split("\n");
+            var lines = fileText.Split("\r\n");
             if(lines.Length<2)
-                 lines = fileText.Split("\r\n");
+                 lines = fileText.Split("\n");
             return lines;
         }
 
